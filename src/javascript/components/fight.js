@@ -7,6 +7,8 @@ export async function fight(firstFighter, secondFighter) {
     let healthSecond = secondFighter.health;
     let defenceOne = firstFighter.defense;
     let defenceTwo = secondFighter.defense;
+    let attackOne = firstFighter.attack;
+    let attackTwo = secondFighter.attack;
     document.getElementById('left-fighter-indicator').style.width = `${healthFirst}%`;
     document.getElementById('right-fighter-indicator').style.width = `${healthSecond}%`;
 
@@ -37,9 +39,11 @@ export async function fight(firstFighter, secondFighter) {
           break
         case controls.PlayerOneBlock:
           firstFighter.defense = defenceOne;
+          firstFighter.attack = attackOne
           break
         case controls.PlayerTwoBlock:
           secondFighter.defense = defenceTwo;
+          secondFighter.attack = attackTwo
           break
       }
       if (controls.PlayerOneCriticalHitCombination.includes(event.code)) {
@@ -70,9 +74,12 @@ export async function fight(firstFighter, secondFighter) {
       switch (event.code){
         case controls.PlayerOneBlock:
           firstFighter.defense = 100;
+          firstFighter.attack = 0;
+
           break
         case controls.PlayerTwoBlock:
           secondFighter.defense = 100;
+          secondFighter.attack = 0;
           break
       }
       if (controls.PlayerOneCriticalHitCombination.includes(event.code)) {

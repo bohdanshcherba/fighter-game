@@ -1,7 +1,7 @@
 import { controls } from '../../constants/controls';
 
 export async function fight(firstFighter, secondFighter) {
-  
+
   return new Promise((resolve) => {
     let healthFirst = firstFighter.health;
     let healthSecond = secondFighter.health;
@@ -83,6 +83,8 @@ export async function fight(firstFighter, secondFighter) {
           healthSecond = healthSecond - ((damage * 100) / secondFighter.health);
           if (healthSecond <= 0) {
             document.getElementById('right-fighter-indicator').style.width = `${0}%`;
+            document.removeEventListener('keyup', handler);
+            document.removeEventListener('keydown', handler);
             resolve(firstFighter);
           }
           document.getElementById('right-fighter-indicator').style.width = `${healthSecond}%`;
@@ -102,7 +104,10 @@ export async function fight(firstFighter, secondFighter) {
           healthFirst = healthFirst - ((damage * 100) / firstFighter.health);
           if (healthFirst <= 0) {
             document.getElementById('left-fighter-indicator').style.width = `${0}%`;
+            document.removeEventListener('keyup', handler);
+            document.removeEventListener('keydown', handler);
             resolve(secondFighter);
+
           }
 
           document.getElementById('left-fighter-indicator').style.width = `${healthFirst}%`;
